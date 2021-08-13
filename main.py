@@ -28,7 +28,7 @@ async def on_ready():
     print('--------------')
     send.start()
 
-@tasks.loop(seconds=random()*10+20)
+@tasks.loop(seconds=random()*10+50)
 async def send():
     ipNum = round(random()*8)
     proxyDict = {
