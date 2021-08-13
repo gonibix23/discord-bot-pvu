@@ -38,6 +38,15 @@ async def send():
     }
     url = requests.get("https://www.cryptogame-tracker.com/pvu/", proxies=proxyDict)
     print(url.status_code)
+    while url.status_code != 200:
+        ipNum = round(random()*8)
+        proxyDict = {
+            "http"  : ips[ipNum], 
+            "https" : ips[ipNum], 
+            "ftp"   : ips[ipNum]
+        }
+        url = requests.get("https://www.cryptogame-tracker.com/pvu/", proxies=proxyDict)
+        print(url.status_code)       
     htmlinfo = bs(url.content, 'html.parser')
     channel = client.get_channel(875171350279512084)
     for tbody in htmlinfo.find_all("tbody"):
