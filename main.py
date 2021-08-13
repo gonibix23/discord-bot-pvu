@@ -8,14 +8,8 @@ from random import random
 seed(1)
 
 ips = [ "http://178.63.17.151:3128",
-        "http://173.212.228.57:3128",
-        "http://91.227.139.215:22222",
         "http://195.64.232.33:3128",
-        "http://51.81.22.176:3128",
-        "http://185.38.111.1:8080",
-        "http://51.81.32.81:8888",
-        "http://178.18.255.175:3128",
-        "http://83.136.184.194:9991"]
+        "http://185.38.111.1:8080"]
 
 TOKEN = 'ODc1MjA4MjkyODkxMjM0MzI0.YRSLPQ._qXY5fJ6fOhAYvFrAu7ne7uOzxU'
 client = discord.Client()
@@ -30,7 +24,7 @@ async def on_ready():
 
 @tasks.loop(seconds=random()*10+50)
 async def send():
-    ipNum = round(random()*8)
+    ipNum = round(random()*2)
     proxyDict = {
         "http"  : ips[ipNum], 
         "https" : ips[ipNum], 
@@ -38,15 +32,7 @@ async def send():
     }
     url = requests.get("https://www.cryptogame-tracker.com/pvu/", proxies=proxyDict)
     print(url.status_code)
-    while url.status_code != 200:
-        ipNum = round(random()*8)
-        proxyDict = {
-            "http"  : ips[ipNum], 
-            "https" : ips[ipNum], 
-            "ftp"   : ips[ipNum]
-        }
-        url = requests.get("https://www.cryptogame-tracker.com/pvu/", proxies=proxyDict)
-        print(url.status_code)       
+    print(ips[ipNum])
     htmlinfo = bs(url.content, 'html.parser')
     channel = client.get_channel(875171350279512084)
     for tbody in htmlinfo.find_all("tbody"):
