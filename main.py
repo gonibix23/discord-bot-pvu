@@ -11,7 +11,7 @@ ips = [ "http://178.63.17.151:3128",
         "http://195.64.232.33:3128",
         "http://185.38.111.1:8080"]
 
-TOKEN = 'ODc1MjA4MjkyODkxMjM0MzI0.YRSLPQ._qXY5fJ6fOhAYvFrAu7ne7uOzxU'
+TOKEN = #Token
 client = discord.Client()
 
 @client.event
